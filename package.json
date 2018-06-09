@@ -4,17 +4,20 @@
   "description": "Wild Flowers is an illustrated series of imaginary gardens",
   "author": "dylanfisher <hi@dylanfisher.com>",
   "private": true,
+  "homepage": "git@github.com:dylanfisher/wildflowers-frontend",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "signature_pad": "^2.3.2",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.1",
+    "vue-gh-pages": "^1.16.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
