@@ -1,16 +1,19 @@
 <template>
-  <div class="hello">
+  <div>
     <drawing-canvas/>
+    <drawings/>
   </div>
 </template>
 
 <script>
 import DrawingCanvas from './DrawingCanvas.vue'
+import Drawings from './Drawings.vue'
 
 export default {
   name: 'Home',
   components: {
-    DrawingCanvas
+    DrawingCanvas,
+    Drawings
   }
 }
 </script>

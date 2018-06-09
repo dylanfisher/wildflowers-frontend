@@ -71,10 +71,16 @@ export default {
 
       data.append('drawing[file]', blob)
 
-      console.log(data)
       this.$http.post('/drawings', data)
-        .then(request => console.log(request))
-        .catch(() => console.log('failed'))
+        .then(request => {
+          // TODO: update drawings state at this point
+          this.$http.get('/drawings')
+            .then(response => {
+              this.signaturePad.clear()
+            })
+            .catch(() => console.log('Request failed'))
+        })
+        .catch(() => console.log('Request failed'))
     },
     dataURLToBlob (dataURL) {
       // Code taken from https://github.com/ebidel/filer.js
