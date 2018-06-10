@@ -10,17 +10,22 @@
 <script>
 import SignaturePad from 'signature_pad'
 import Button from './Button.vue'
+import { parallax } from '../mixins/parallax'
 
 export default {
   name: 'DrawingCanvas',
+  mixins: [parallax],
   components: {
     'v-button': Button
   },
   data () {
-    return {}
+    return {
+      parallaxEl: null
+    }
   },
   mounted () {
     this.init()
+    this.parallaxEl = this.$refs.canvas
     // On mobile devices it might make more sense to listen to orientation change,
     // rather than window resize events.
     window.addEventListener('resize', this.handleResize)
@@ -74,11 +79,11 @@ export default {
       this.$http.post('/drawings', data)
         .then(request => {
           // TODO: update drawings state at this point
-          this.$http.get('/drawings')
-            .then(response => {
-              this.signaturePad.clear()
-            })
-            .catch(() => console.log('Request failed'))
+          // this.$http.get('/drawings')
+          //   .then(response => {
+          //     this.signaturePad.clear()
+          //   })
+          //   .catch(() => console.log('Request failed'))
         })
         .catch(() => console.log('Request failed'))
     },
@@ -100,23 +105,21 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #drawing-canvas {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 120%;
+    height: 120%;
     z-index: 1;
   }
 
   #drawing-canvas-buttons {
     position: absolute;
     bottom: 30px;
-    left: 0;
-    width: 100%;
-    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 2;
   }
 </style>
